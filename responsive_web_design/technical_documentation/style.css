@@ -1,0 +1,97 @@
+html {
+  font-family: "Montserrat", sans-serif;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background-color: #171b24;
+  color: #fff;
+}
+
+h1 {
+  margin-right: 1.25rem;
+}
+
+#navbar {
+  position: fixed;
+  top: 0;
+  left: -1.25rem;
+  height: 100%;
+  overflow: auto;
+  width: 12.5rem;
+  text-align: center;
+}
+
+.nav-link {
+  text-align: center;
+  padding: 0;
+  width: 6.25rem;
+  border-style: dotted;
+  padding: 0.625rem 0;
+  margin: 0.313rem 0;
+}
+
+.nav-link:hover {
+  background-color: #242a36;
+}
+
+nav section li {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+}
+
+.main-li {
+  list-style: disc;
+}
+
+a {
+  text-decoration: none;
+  color: #f69600;
+}
+
+a:hover {
+  color: #fff;
+  transition: 0.5s;
+}
+
+#main-doc {
+  display: fixed;
+  margin: 0 0 1.25rem 12.5rem;
+}
+
+.nes-board {
+  display: block;
+  max-width: 100%;
+  width: 18.75rem;
+  height: auto;
+  margin: 0.625rem;
+}
+
+code {
+  display: block;
+  width: 80%;
+  padding: 0.313rem;
+  margin: 0 0.625rem;
+  background-color: #141820;
+  border-radius: 0.313rem;
+}
+
+@media (max-width: 31.25rem) {
+  #navbar {
+    width: 100%;
+    height: auto;
+    background-color: #171b24;
+  }
+
+  section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+  #main-doc {
+    font-size: 0.75rem;
+    margin: 15.625rem 1.25rem 1.25rem 1.875rem;
+  }
+}

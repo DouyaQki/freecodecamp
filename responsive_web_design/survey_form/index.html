@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="keywords" content="survey form, Famicom, nes, Nintendo" />
+  <meta name="description" content="A Famicom-NES survey form" />
+  <meta name="author" content="Douya Qki" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="icon" href="favicon.ico" />
+  <link rel="stylesheet" href="style.css" />
+  <title>A Famicom-NES Survey Form</title>
+</head>
+
+<body>
+  <h1 id="title">A Famicom-NES survey form</h1>
+  <p id="description">Nintendo console games</p>
+  <div class="form-box">
+    <form id="survey-form">
+      <label id="name-label">Name
+        <input type="text" id="name" placeholder="Enter your name" required />
+      </label>
+      <label id="email-label">Email
+        <input type="email" id="email" placeholder="your@email.com" required />
+      </label>
+      <label id="number-label">Age
+        <input type="number" id="number" placeholder="14" min="14" max="80" required />
+      </label>
+
+      <select id="dropdown">
+        <option name="question">¿Which console style do you prefer?</option>
+        <option name="nes-version" value="option-a">NES (american)</option>
+        <option name="famicom-version" value="option-b">
+          Famicom (japanese)
+        </option>
+        <option name="nes-famicom-version" value="option-c">
+          Both (why not?)
+        </option>
+      </select>
+      <p class="question-checks">Which joystick do you prefer?</p>
+      <div class="radio-box">
+        <label>
+          <input type="radio" name="joystick" value="jp-joystock" />japanese
+          joystick
+        </label>
+        <label>
+          <input type="radio" name="joystick" value="us-joystick" />american
+          joystick
+        </label>
+      </div>
+      <p class="question-checks">Which of these genres do you like?</p>
+      <div class="genre-checkbox">
+        <label> <input type="checkbox" name="genre-game" value="genre-a" />Adventure </label>
+        <label> <input type="checkbox" name="genre-game" value="genre-b" />Beat 'em up </label>
+        <label> <input type="checkbox" name="genre-game" value="genre-s" />Shooter </label>
+        <label> <input type="checkbox" name="genre-game" value="genre-others" />others </label>
+      </div>
+      <textarea name="comment" cols="30" rows="10"
+        placeholder="Comment about your favorite game and tell me if you have a fond memory based on it."></textarea>
+      <input type="submit" id="submit" />
+    </form>
+  </div>
+  <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+</body>
+
+</html>

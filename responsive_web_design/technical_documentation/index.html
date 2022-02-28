@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="keywords" content="Technical documentation, Famicom, nes, Nintendo, console, hardware reference" />
+  <meta name="description" content="Technical documentation about how a NES/Famicom works." />
+  <meta name="author" content="Douya Qki" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Technical documentation</title>
+</head>
+
+<body>
+  <!-- NAVBAR -->
+
+  <nav id="navbar">
+    <ul>
+      <header>
+        <h1>NES reference guide</h1>
+      </header>
+
+      <section>
+        <li>
+          <a href="#Central_Processing_Unit" class="nav-link">Central Processing Unit</a>
+        </li>
+        <li>
+          <a href="#PPU_Memory_Map" class="nav-link">PPU Memory Map</a>
+        </li>
+        <li>
+          <a href="#Colour_Palette" class="nav-link">Colour Palette</a>
+        </li>
+        <li>
+          <a href="#Direct_Memory_Access" class="nav-link">Direct Memory Access</a>
+        </li>
+        <li>
+          <a href="#Sprites_on_screen" class="nav-link">Sprites on screen</a>
+        </li>
+      </section>
+    </ul>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main id="main-doc">
+    <img src="imgs/nes_board.png" alt="NES board" class="nes-board" />
+    <section class="main-section" id="Central_Processing_Unit">
+      <header>
+        <h2>Central Processing Unit</h2>
+      </header>
+      <ul>
+        <li class="main-li">CPU: Central Processing Unit</li>
+      </ul>
+      <p>
+        Hiroshi Yamauchi’s instructions to design a console which would be
+        cheaper than the competition resulted in Nintendo deciding to use an
+        outdated Central Processing Unit (CPU). Although a 16-bit processor
+        would have coped with ease, to keep the price low they decided to use
+        a variant of the 8-bit 6502 processor, developed by MOS technology in
+        1975. The chip would be sufficient to run the programs but would be
+        unable to generate the graphics required so the company decided to use
+        a second chip as a dedicated Picture Processing Unit (PPU),
+        responsible for calculating and displaying the graphics. Figure 1-4
+        shows the top of the motherboard with the CPU and PPU indicated.
+      </p>
+
+      <p>
+        Ricoh produced an NMOS processor based on the 6502, the 2A03. The chip
+        differed from a standard 6502 in that it had the ability to handle
+        sound, serving as pAPU (pseudo-Audio Processing Unit) as well as CPU,
+        and that it lacked a Binary Coded Decimal (BCD) mode which allowed
+        representing each digit using 4 bits. For the purposes of programming,
+        the 2A03 uses the same instruction set as the standard 6502 which is
+        shown in figure 2-1.
+      </p>
+
+      <code>The 6502 is a little endian processor which means that addresses are
+          stored in memory least significant byte first, for example the address
+          $1234 would be stored in memory as $34 at memory location x and $12 at
+          memory location (x + 1).</code>
+    </section>
+
+    <hr />
+
+    <section class="main-section" id="PPU_Memory_Map">
+      <header>
+        <h2>PPU Memory Map</h2>
+      </header>
+
+      <ul>
+        <li class="main-li">PPU: Picture Processing Unit</li>
+      </ul>
+      <p>
+        The PPU has its own memory, known as VRAM (Video RAM). Like the CPU,
+        the PPU can also address 64 KB of memory although it only has 16 KB of
+        physical RAM. The PPU’s memory map is shown in figure 3-1. Again, the
+        left hand map shows a simplified version which is elaborated on by the
+        right hand map. Due to the difference between physical and logical
+        address spaces, any address above $3FFF is wrapped around, making the
+        logical memory locations $4000-$FFFF effectively a mirror of locations
+        $0000-$3FFF.
+      </p>
+
+      <p>
+        Reading from and writing to PPU memory can be done by using the I/O
+        registers $2006 and $2007 in CPU memory. This is usually done during
+        V-Blank at the end of a frame, as it affects addresses used while
+        drawing the screen and can therefore corrupt what is displayed.
+        However, this effect can be used to produce split screen effects.
+      </p>
+
+      <code>Ricoh also supplied the 2C02 to serve as PPU. The PPU’s registers are
+          mostly located in the I/O registers section of CPU memory at
+          $2000-$2007 and $4014</code>
+    </section>
+
+    <hr />
+
+    <section class="main-section" id="Colour_Palette">
+      <header>
+        <h2>Colour Palette</h2>
+      </header>
+      <p>
+        The NES has a colour palette containing 52 colours although there is
+        actually room for 64. However, not all of these can be displayed at a
+        given time. The NES uses two palettes, each with 16 entries, the image
+        palette ($3F00-$3F0F) and the sprite palette ($3F10-$3F1F). The image
+        palette shows the colours currently available for background tiles.
+      </p>
+
+      <p>
+        The sprite palette shows the colours currently available for sprites.
+        These palettes do not store the actual colour values but rather the
+        index of the colour in the system palette. Since only 64 unique values
+        are needed, bits 6 and 7 can be ignored.
+      </p>
+
+      <ul>
+        <li class="main-li">Colours onscreen: 25 out of 52</li>
+      </ul>
+
+      <code>The total number of colours onscreen at any time is therefore 25 out
+          of 52. Both palettes are also mirrored to $3F20-$3FFF. The colour
+          palette is shown in Appendix F.</code>
+    </section>
+
+    <hr />
+
+    <section class="main-section" id="Direct_Memory_Access">
+      <header>
+        <h2>Direct Memory Access</h2>
+      </header>
+      <p>
+        When transferring a large amount of data between devices it is
+        inefficient to transfer this through the processor. To transfer data
+        from CPU memory to sprite memory, for example, takes the following
+        steps:
+      </p>
+
+      <ul>
+        <li class="main-li">Load required SPR-RAM address into CPU.</li>
+        <li class="main-li">Write required SPR-RAM address to $2003.</li>
+        <li class="main-li">Load byte into CPU.</li>
+        <li class="main-li">Write byte to $2004.</li>
+      </ul>
+
+      <p>
+        When filling the contents of sprite memory, this technique would have
+        to be repeated 256 times. Direct Memory Access (DMA) is a technique
+        which allows more efficient copying of data from CPU memory to sprite
+        memory. Using DMA, the whole of sprite memory can be filled by using a
+        single instruction, a write to $4014. The starting address in CPU
+        memory is specified by the operand for the write multiplied by $100.
+        The 256 bytes starting at this address are copied directly into sprite
+        memory without the further involvement of the CPU.
+      </p>
+
+      <code>
+          Using DMA, the whole of sprite memory can be filled by using a single
+          instruction, a write to $4014.
+        </code>
+    </section>
+    <hr />
+    <section class="main-section" id="Sprites_on_screen">
+      <header>
+        <h2>Sprites on screen</h2>
+      </header>
+      <p>
+        Sprites are the characters to draw on the screen. Sprites can be
+        either 8x8 pixels or 8x16 pixels. Most characters are composed of
+        multiple sprites.
+      </p>
+
+      <p>
+        The sprite data is stored in the pattern tables while the sprite
+        attributes are stored in SPR-RAM. There are a maximum of 64 sprites,
+        each of which uses four bytes in SPR-RAM. The bytes work as follows:
+      </p>
+
+      <ul>
+        <li class="main-li">
+          Byte 0 - Stores the y-coordinate of the top left of the sprite minus
+          1.
+        </li>
+        <li class="main-li">
+          Byte 1 - Index number of the sprite in the pattern tables
+        </li>
+        <li class="main-li">Byte 2 - Stores the attributes of the sprite.</li>
+        <li class="main-li">
+          Bits 0-1 - Most significant two bits of the colour.
+        </li>
+        <li class="main-li">
+          Bit 5 - Indicates whether this sprite has priority over the
+          background.
+        </li>
+        <li class="main-li">
+          Bit 6 - Indicates whether to flip the sprite horizontally.
+        </li>
+        <li class="main-li">
+          Bit 7 - Indicates whether to flip the sprite vertically.
+        </li>
+      </ul>
+
+      <code>Sprites can be read or written one at a time by first writing the
+          required address to $2003 and then reading or writing $2004.
+          Alternatively the whole of SPR-RAM can be written in one DMA operation
+          by writing to $4014.</code>
+    </section>
+  </main>
+
+  <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+</body>
+
+</html>

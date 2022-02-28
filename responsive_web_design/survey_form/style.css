@@ -1,0 +1,119 @@
+html {
+  font-family: "Montserrat", sans-serif;
+}
+
+body {
+  background-color: #171b24;
+  color: #fff;
+}
+
+#title {
+  margin: 2rem 0.7rem -1.25rem 0.7rem;
+  text-align: center;
+  font-size: 1.625rem;
+}
+
+#description {
+  text-align: center;
+  font-size: 1.3rem;
+}
+
+#survey-form {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #242a36;
+  border-radius: 0.313rem;
+  width: 21.875rem;
+  max-width: 90%;
+  margin: 0 auto;
+  padding-top: 0.938rem;
+  padding-bottom: 0.938rem;
+}
+
+label {
+  text-align: center;
+}
+
+#name,
+#email,
+#number {
+  color: #fff;
+  background-color: #171b24;
+  border: none;
+  width: 10rem;
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  margin: 0.313rem 0;
+}
+
+#dropdown {
+  background-color: #171b24;
+  color: #fff;
+  margin-top: 1.25rem;
+}
+
+select option {
+  background-color: #171b24;
+}
+
+.radio-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.genre-checkbox label {
+  display: flex;
+}
+
+textarea {
+  background-color: #171b24;
+  border: none;
+  color: #fff;
+  border-radius: 0.313rem;
+  width: 15rem;
+  height: 3.75rem;
+  max-width: 100%;
+  margin: 0 auto;
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+textarea::placeholder {
+  color: #fff;
+}
+
+#submit {
+  margin: auto;
+  background-color: #e30520;
+  color: #fff;
+  font-size: 1rem;
+  border: none;
+  border-radius: 0.313rem;
+  height: 1.875rem;
+  width: 10rem;
+  cursor: pointer;
+}
+
+#submit:hover {
+  animation-name: animation-button;
+  animation-duration: 500ms;
+  animation-fill-mode: forwards;
+}
+
+[type="checkbox"],
+[type="radio"] {
+  accent-color: #e3243b;
+}
+
+@keyframes animation-button {
+  50% {
+    width: 10.625rem;
+  }
+  100% {
+    width: 10rem;
+    background-color: #e3243b;
+  }
+}

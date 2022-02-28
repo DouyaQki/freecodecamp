@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="Product landing page, Famicom, nes, Nintendo, Slow Mole, cartridge" />
+    <meta name="description" content='Slow Mole is an 8-bit platformer that "makes everyone a speedrunner"' />
+    <meta name="author" content="Douya Qki" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Slow Mole</title>
+</head>
+
+<body>
+    <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+    <header id="header">
+        <img src="imgs/sm.png" alt="" id="header-img">
+
+        <nav id="nav-bar">
+            <a href="#form" class="nav-link">About the game</a>
+            <a href="#section-b" class="nav-link">On hardware</a>
+            <a href="#section-c" class="nav-link">Release</a>
+        </nav>
+    </header>
+    <div class="iframe">
+        <iframe id="video" src="https://www.youtube.com/embed/roumRR86sUM" title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+
+        <div class="cartridge">
+            <img src="imgs/slowmolecartridge.png" alt="">
+            <p>Get a physical copy</p>
+            <input type="submit" value="$15" class="purchase">
+        </div>
+    </div>
+
+    <form action="" id="form">
+        <p>Email us if you wish updates of this project</p>
+        <div>
+            <input type="email" name="email" id="email" placeholder="your@email" required>
+            <input type="submit" value="Submit" id="submit">
+        </div>
+    </form>
+    <main>
+        <div class="grid-section">
+            <div class="box" id="section-a">
+                <img src="imgs/keyart.jpg" alt="">
+                <p>8-bit platformer for the NES that makes everyone a speedrunner. Playable on real hardware or modern
+                    devices. The whole game is designed around a unique checkpoint mechanic that will only award a
+                    checkpoint when the player proves their mastery of a screen. At the start you have two difficulty
+                    options to choose from. They affect the timer, which might seem insignificant, but as you play you
+                    will
+                    notice makes a big difference. For those who truly master the game, the mechanical nightmare
+                    challenge
+                    levels await...</p>
+            </div>
+            <div class="box" id="section-b">
+                <img src="imgs/slowmolecartridge.png" alt="">
+                <p>The game has been tested to work beautifully via emulation on a PC or mini consoles (like the NES
+                    Classic), FPGA consoles (like the MiSTer or Analogue’s NT Mini), as well as on real NES and Famicom
+                    hardware (via flashcarts such as the Everdrive N8 or retroUSB’s PowerPak).</p>
+            </div>
+            <div class="box" id="section-c">
+                <img src="imgs/molecart.png" alt="" id="section-c">
+                <p>It's available a physical copy on NES and Famicom cartridges. This release includes more secrets,
+                    more
+                    music, and more levels!</p>
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <section>
+            <p>©Erik Rosenlund</p>
+            <a href="https://twitter.com/Checkoofilm" target="blank_" class="footer-links">> Twitter</a>
+        </section>
+        <section>
+            <a href="mailto:douyaqki@gmail.com" class="footer-links">Contact me</a>
+            <a href="#video" class="footer-links">Go up</a>
+        </section>
+    </footer>
+</body>
+
+</html>
