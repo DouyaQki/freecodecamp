@@ -21,6 +21,10 @@ header {
   height: auto;
 }
 
+#img-caption {
+  user-select: text;
+}
+
 #main {
   width: 18rem;
   margin: 0 auto;
